@@ -259,28 +259,6 @@ npm run dev  # Runs on http://localhost:3001
    npm run dev  # Runs on http://localhost:3001
    ```
 
-## Deployment
-
-1. **Deploy API**
-   - Deploy to a PaaS (Heroku, Railway, Render, etc.)
-   - Set environment variables: `DATABASE_URL`, `JWT_SECRET`, `PORT`
-   - Update CORS settings for production domains
-
-2. **Deploy Frontends**
-   - Build both frontends: `npm run build`
-   - Deploy to static hosting (Vercel, Netlify, etc.)
-   - Set `VITE_API_URL` environment variable to your API URL
-
-## Future Enhancements
-
-- Add rate limiting
-- Add image upload support
-- Add rich text editor (TinyMCE, etc.)
-- Add email notifications for comments
-- Add search functionality
-- Add post categories/tags
-- Add RSS feed
-
 ## License
 
 MIT
