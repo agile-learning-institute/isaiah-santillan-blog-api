@@ -1,0 +1,100 @@
+.post-detail {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 2rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--primary-dark);
+}
+
+.post-content {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 3rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 3rem;
+}
+
+.post-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.post-meta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.post-body {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.post-body p {
+  margin-bottom: 1.5rem;
+}
+
+.comments-section {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.comments-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  color: var(--text);
+}
+
+.error-message {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.error-message h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--error);
+}
+
+.error-message p {
+  margin-bottom: 2rem;
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .post-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .post-header h1 {
+    font-size: 2rem;
+  }
+  
+  .post-body {
+    font-size: 1rem;
+  }
+}
+

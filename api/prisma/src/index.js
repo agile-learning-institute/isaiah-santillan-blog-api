@@ -34,4 +34,30 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || 4000;
-app.listen(port, () => console.log(`API listening on ${port}`));
+const server = app.listen(port, () => {
+  console.log(`API listening on port ${port}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+});
+
+// Graceful shutdown
+process.on('SIGTERM', async () => {
+  console.log('SIGTERM signal received: closing HTTP server');
+  server.close(() => {
+    console.log('HTTP server closed');
+    prisma.$disconnect().then(() => {
+      console.log('Database connection closed');
+      process.exit(0);
+    });
+  });
+});
+
+process.on('SIGINT', async () => {
+  console.log('SIGINT signal received: closing HTTP server');
+  server.close(() => {
+    console.log('HTTP server closed');
+    prisma.$disconnect().then(() => {
+      console.log('Database connection closed');
+      process.exit(0);
+    });
+  });
+});
