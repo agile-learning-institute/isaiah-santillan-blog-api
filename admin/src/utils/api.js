@@ -39,6 +39,12 @@ export const api = {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     }),
+  
+  register: (email, password, username) =>
+    fetchAPI('/auth/register', {
+      method: 'POST',
+      body: JSON.stringify({ email, password, username }),
+    }),
 
   // Posts
   getPosts: (published = null) => {
