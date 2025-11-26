@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const { authenticate, requireRole } = require('../middleware/auth');
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const UserService = require('../services/UserService');
 
 router.get('/', authenticate, requireRole('ADMIN'), async (req, res, next) => {
-  const users = await prisma.user.findMany({ select: { id: true, email: true, username: true, role: true }});
-  res.json(users);
+  try {
+    const users = await UserService.getAllUsers();
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
 });
 
 module.exports = router;
