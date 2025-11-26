@@ -12,6 +12,8 @@ A RESTful API for a blog application built with Express.js, Prisma, and PostgreS
 - ✅ **Input Validation** - Comprehensive validation and error handling
 - ✅ **Pagination** - Paginated post listings
 - ✅ **Slug-based URLs** - SEO-friendly post URLs
+- ✅ **Clean Architecture** - Separation of concerns with models, services, and validators
+- ✅ **Comprehensive Testing** - Full test suite with 91+ tests covering all layers
 
 ## Tech Stack
 
@@ -21,6 +23,7 @@ A RESTful API for a blog application built with Express.js, Prisma, and PostgreS
 - **ORM**: Prisma
 - **Authentication**: JWT (jsonwebtoken)
 - **Security**: bcrypt, helmet, cors
+- **Testing**: Jest, Supertest
 
 ## Setup
 
@@ -51,6 +54,13 @@ A RESTful API for a blog application built with Express.js, Prisma, and PostgreS
    ```bash
    npm run dev    # Development mode with nodemon
    npm start      # Production mode
+   ```
+
+5. **Run Tests** (Optional)
+   ```bash
+   npm test              # Run all tests
+   npm run test:watch    # Watch mode
+   npm run test:coverage # Generate coverage report
    ```
 
 ## API Endpoints
@@ -180,24 +190,14 @@ The JWT token is returned when you register or login. Store it in localStorage o
 - `postId` - Foreign key to Post
 - `createdAt` - Timestamp
 
-## Project Structure
 
-```
-api/prisma/
-├── src/
-│   ├── index.js          # Main Express app
-│   ├── routes/           # Route handlers
-│   │   ├── auth.js       # Authentication routes
-│   │   ├── posts.js      # Post routes
-│   │   ├── comments.js   # Comment routes
-│   │   └── users.js      # User routes
-│   ├── middleware/       # Express middleware
-│   │   └── auth.js       # JWT authentication middleware
-│   └── utils/            # Utility functions
-│       └── jwt.js        # JWT helper functions
-├── schema.prisma         # Prisma schema
-└── package.json          # Dependencies
-```
+### Architecture Layers
+
+- **Routes**: Thin HTTP handlers that delegate to services
+- **Services**: Business logic and orchestration
+- **Models**: Data access abstraction (Prisma operations)
+- **Validators**: Input validation and sanitization
+- **Middleware**: Authentication and authorization
 
 ## Frontend Applications
 
@@ -258,6 +258,70 @@ npm run dev  # Runs on http://localhost:3001
    npm install
    npm run dev  # Runs on http://localhost:3001
    ```
+
+## Testing
+
+The project includes a comprehensive test suite with 91+ tests covering all layers of the application.
+
+### Running Tests
+
+```bash
+cd api/prisma
+
+# Run all tests
+npm test
+
+# Watch mode for development
+npm run test:watch
+
+# Generate coverage report
+npm run test:coverage
+```
+
+### Test Structure
+
+- **Validators**: Test input validation logic
+- **Services**: Test business logic with mocked models
+- **Routes**: Integration tests for HTTP endpoints
+- **Utils**: Test utility functions
+
+### Test Coverage
+
+The test suite covers:
+- ✅ All validators (auth, post, comment)
+- ✅ All services (auth, post, comment, user)
+- ✅ All route endpoints
+- ✅ Utility functions
+- ✅ Error handling and edge cases
+
+## Development
+
+### Code Organization
+
+The codebase follows clean architecture principles:
+
+- **Separation of Concerns**: Each layer has a single responsibility
+- **Testability**: Services and models can be tested independently
+- **Maintainability**: Changes are isolated to specific layers
+- **Reusability**: Services can be used across different parts of the application
+
+### Adding New Features
+
+1. **Create/Update Model** (`src/models/`) - Add data access methods
+2. **Create/Update Validator** (`src/validators/`) - Add validation logic
+3. **Create/Update Service** (`src/services/`) - Add business logic
+4. **Create/Update Route** (`src/routes/`) - Add HTTP endpoints
+5. **Write Tests** (`tests/`) - Add tests for new functionality
+
+## Future Enhancements
+
+- Add rate limiting
+- Add image upload support
+- Add rich text editor (TinyMCE, etc.)
+- Add email notifications for comments
+- Add search functionality
+- Add post categories/tags
+- Add RSS feed
 
 ## License
 
