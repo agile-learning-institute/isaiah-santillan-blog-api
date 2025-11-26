@@ -5,6 +5,21 @@ const CommentService = require('../../src/services/CommentService');
 // Mock services
 jest.mock('../../src/services/CommentService');
 
+// Mock auth middleware
+jest.mock('../../src/middleware/auth', () => ({
+  authenticate: (req, res, next) => {
+    // Mock authenticated user
+    req.user = { id: 1, role: 'ADMIN', email: 'admin@example.com' };
+    next();
+  },
+  requireRole: (role) => (req, res, next) => {
+    if (req.user && (req.user.role === role || req.user.role === 'ADMIN')) {
+      return next();
+    }
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+}));
+
 describe('Comments Routes', () => {
   beforeEach(() => {
     jest.clearAllMocks();

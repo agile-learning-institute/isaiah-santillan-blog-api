@@ -6,7 +6,9 @@ class CommentValidator {
       errors.push('Comment content is required');
     }
     
-    if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    // Trim email before validation
+    const trimmedEmail = data.email?.trim();
+    if (trimmedEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       errors.push('Invalid email format');
     }
     
@@ -16,7 +18,7 @@ class CommentValidator {
     
     return {
       name: data.name?.trim() || null,
-      email: data.email?.trim() || null,
+      email: trimmedEmail || null,
       content: data.content.trim()
     };
   }
@@ -28,7 +30,9 @@ class CommentValidator {
       errors.push('Content cannot be empty');
     }
     
-    if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    // Trim email before validation
+    const trimmedEmail = data.email?.trim();
+    if (trimmedEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       errors.push('Invalid email format');
     }
     

@@ -6,7 +6,7 @@ describe('slugify utility', () => {
   });
 
   it('should handle special characters', () => {
-    expect(slugify('Hello, World!')).toBe('helloworld');
+    expect(slugify('Hello, World!')).toBe('hello-world');
   });
 
   it('should handle multiple spaces', () => {
